@@ -189,7 +189,7 @@ exports.updaterofile = async(req,res)=>{
             }
         }
 
-        // await User.save();
+        await User.insertOne();
 
         return res.send(sucess(200,{user}));
     } catch (e) {
