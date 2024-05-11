@@ -183,13 +183,13 @@ exports.updaterofile = async(req,res)=>{
             const cloudImg = await cloudinary.uploader.upload(Userimg,{
                 folder :"Profile Image"
             })
-            User.avatar = {
+            user.avatar = {
                 url : cloudImg.secure_url,
                 publicId : cloudImg.public_id
             }
         }
 
-        await User.insertOne();
+        await user.save();
 
         return res.send(sucess(200,{user}));
     } catch (e) {
