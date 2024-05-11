@@ -1,6 +1,7 @@
 const {sucess,error} = require('../utils/responseWraper');
 const User = require("../models/User");
 const Post = require("../models/Post");
+const cloudinary = require('cloudinary').v2;
 
 exports.followUnfollowcontroler = async(req,res)=>
 {
@@ -158,7 +159,7 @@ exports.getmyinformation = async(req,res)=>{
         try {
             const user = await User.findById(req._id);
             return res.send(sucess(200,{user}));
-        } catch (error) {
+        } catch (e) {
             return res.send(error(500, e.message));
         }
 }
@@ -166,8 +167,30 @@ exports.getmyinformation = async(req,res)=>{
 
 exports.updaterofile = async(req,res)=>{
     try {
-        
-    } catch (error) {
-        
+        const {name,bio,Userimg} = req.body;
+        const user = await User.findById(req._id);
+
+        if(name)
+        {
+            user.name = name;
+        }
+        if(bio)
+        {
+            user.bio = bio;
+        }
+        if(Userimg)
+        {
+            const cloudImg = await cloudinary.uploader.upload(Userimg,{
+                folder :"Profile Image"
+            })
+            User.avatar = {
+                url : cloudImg.secure_url,
+                publicId : cloudImg.public_id
+            }
+        }
+
+        await User.save();
+    } catch (e) {
+        return res.send(error(500, e.message));
     }
 }
