@@ -162,3 +162,12 @@ exports.getmyinformation = async(req,res)=>{
             return res.send(error(500, e.message));
         }
 }
+
+
+exports.updaterofile = async(req,res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+}
