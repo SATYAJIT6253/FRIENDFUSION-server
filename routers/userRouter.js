@@ -12,5 +12,5 @@ router.get("/getmypost",postmiddleware,getmyposts);
 router.get("/getpostofuser",postmiddleware,getpostofuser);
 router.delete("/",postmiddleware,deletprofile);
 router.get("/getmyinformation",postmiddleware,getmyinformation);
-router.get("/updatemyprofile",postmiddleware,updaterofile)
+router.put("/updatemyprofile",postmiddleware,updaterofile);
 module.exports = router;
