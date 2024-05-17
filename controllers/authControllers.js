@@ -100,7 +100,7 @@ const generateacesstoken = (data)=>{
 
 const generatrefershtoken = (data)=>{
     try {
-        const token = jwt.sign(data,process.env.REFERSH_PRIVATE_KEY,{expiresIn:"15m"});
+        const token = jwt.sign(data,process.env.REFERSH_PRIVATE_KEY,{expiresIn:"35m"});
         return token;
     } catch (error) {
         console.log(error);
