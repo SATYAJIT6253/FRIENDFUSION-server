@@ -1,7 +1,7 @@
 const { sucess, error } = require('../utils/responseWraper');
 const Post = require('../models/Post');
 const User = require("../models/User");
-exports.getAllPostcontroller = (req, res) => {
+exports.getAllPostcontroller = async(req, res) => {
 
    return res.send(sucess(200, "this is all postrouter"));
 
