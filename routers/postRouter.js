@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {getAllPostcontroller,createpostcontroller,likeunlikeController,updatepostcontroller, deletpostcontroller} = require("../controllers/postController");
 const postmiddleware =  require("../middlewares/requireUser");
-router.get("/all",postmiddleware,getAllPostcontroller);
+router.get("/all",getAllPostcontroller);
 router.post("/",postmiddleware,createpostcontroller);
 router.post("/like",postmiddleware,likeunlikeController);
 router.put("/",postmiddleware,updatepostcontroller);
