@@ -1,6 +1,7 @@
 const { sucess, error } = require('../utils/responseWraper');
 const Post = require('../models/Post');
 const User = require("../models/User");
+const cloudinary = require("cloudinary").v2;
 exports.getAllPostcontroller = async(req, res) => {
 
    return res.send(sucess(200, "this is all postrouter"));
@@ -9,11 +10,22 @@ exports.getAllPostcontroller = async(req, res) => {
 // craetepost controllwer
 exports.createpostcontroller = async (req, res) => {
    try {
-      const { caption } = req.body;
+      const { caption,postImg } = req.body;
       const owner = req._id;
       const user = await User.findById(req._id);
+      if(!caption || !postImg)
+      {
+            return res.send(error(400,"please provide both post and caption carefully"));
+      }
+      const cloudImg = await cloudinary.uploader.upload(postImg,{
+         folder :"postImage"
+     })
       const post = await Post.create({
          caption, owner,
+         image:{
+            publicId:cloudImg.public_id,
+            url:cloudImg.secure_url
+         }
       })
 
       user.posts.push(post._id);
