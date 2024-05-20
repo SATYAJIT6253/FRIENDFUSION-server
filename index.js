@@ -22,7 +22,7 @@ const authRouter = require("./routers/authRouter");
 const postRouter = require("./routers/postRouter");
 const userRouter = require("./routers/userRouter");
 // use of middleeares
-app.use(express.json());
+app.use(express.json({limit:"900mb"}));
 app.use(morgan("common"));
 app.use(cookieparser());
 app.use(cors({
