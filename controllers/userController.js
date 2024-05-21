@@ -1,7 +1,6 @@
 const {sucess,error} = require('../utils/responseWraper');
 const User = require("../models/User");
 const Post = require("../models/Post");
-const { populate } = require('dotenv');
 const { mapPostOtput } = require('../utils/mapPost');
 const cloudinary = require('cloudinary').v2;
 

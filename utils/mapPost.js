@@ -1,4 +1,4 @@
-export const mapPostOtput = (post,userId)=>{
+const mapPostOtput = (post,userId)=>{
     return {
         _id:post._id,
         caption:post.caption,
@@ -11,4 +11,7 @@ export const mapPostOtput = (post,userId)=>{
         likescnt : post.likes.length,
         isliked : post.likes.includes(userId)
     }
+}
+export default {
+    mapPostOtput
 }
