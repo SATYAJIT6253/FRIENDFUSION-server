@@ -201,8 +201,8 @@ exports.updaterofile = async(req,res)=>{
 
 exports.getuserProfile = async(req,res)=>{
     try {
-        const userid = req.body.userId;
-        const user = await User.findById(userid).populate({
+        const userId = req.body.userId;
+        const user = await User.findById(userId).populate({
             path:'posts',
             populate:{
                 path:'owner'
