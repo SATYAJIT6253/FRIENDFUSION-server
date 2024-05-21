@@ -12,6 +12,6 @@ const mapPostOtput = (post,userId)=>{
         isliked : post.likes.includes(userId)
     }
 }
-export default {
+module.exports = {
     mapPostOtput
 }
