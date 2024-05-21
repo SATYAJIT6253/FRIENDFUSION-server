@@ -1,6 +1,8 @@
 const {sucess,error} = require('../utils/responseWraper');
 const User = require("../models/User");
 const Post = require("../models/Post");
+const { populate } = require('dotenv');
+const { mapPostOtput } = require('../utils/mapPost');
 const cloudinary = require('cloudinary').v2;
 
 exports.followUnfollowcontroler = async(req,res)=>
@@ -192,6 +194,25 @@ exports.updaterofile = async(req,res)=>{
         await user.save();
 
         return res.send(sucess(200,{user}));
+    } catch (e) {
+        return res.send(error(500, e.message));
+    }
+}
+
+exports.getuserProfile = async(req,res)=>{
+    try {
+        const userid = req.body.userId;
+        const user = await User.findById(userid).populate({
+            path:'posts',
+            populate:{
+                path:'owner'
+            }
+        })
+        const fullposts = user.posts;
+        const posts = fullposts.map(item => mapPostOtput(item,req._id)).reverse();
+        // user.-docs just give us the relvant things tha are required
+        return res.send(sucess(200,{...user._doc,posts}));
+
     } catch (e) {
         return res.send(error(500, e.message));
     }
