@@ -31,7 +31,7 @@ exports.createpostcontroller = async (req, res) => {
       user.posts.push(post._id);
       await user.save();
 
-      return res.send(sucess(201, post));
+      return res.send(sucess(200, post));
 
    } catch (e) {
       return res.send(error(500, e.message));
