@@ -51,14 +51,11 @@ exports.likeunlikeController = async (req, res) => {
       if (post.likes.includes(currentuserid)) {
          const index = post.likes.indexOf(currentuserid);
          post.likes.splice(index, 1);
-
-         await post.save();
-         return res.send(sucess(200, "post Unliked"))
       } else {
          post.likes.push(currentuserid);
-         await post.save();
-         return res.send(sucess(200, 'post liked'));
       }
+      await post.save();
+      return res.send(sucess(200,{post}));
    } catch (e) {
       return res.send(error(500, e.message));
    }
