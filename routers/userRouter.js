@@ -8,7 +8,7 @@ const {followUnfollowcontroler, getpostsoffollowing, getmyposts, getpostofuser, 
     getuserProfile} = require("../controllers/userController");
 
 router.post("/follow",postmiddleware,followUnfollowcontroler);
-router.get("/getpostsoffollowing",postmiddleware,getpostsoffollowing);
+router.get("/getfeedData",postmiddleware,getpostsoffollowing);
 router.get("/getmypost",postmiddleware,getmyposts);
 router.get("/getpostofuser",postmiddleware,getpostofuser);
 router.delete("/",postmiddleware,deletprofile);

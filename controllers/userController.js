@@ -59,7 +59,7 @@ exports.getpostsoffollowing = async (req,res)=>
         }).populate('owner');
 
         const posts = fullPosts
-            .map((item) => mapPostOutput(item, req._id))
+            .map((item) => mapPostOtput(item, req._id))
             .reverse();
         
         const followingsIds = curUser.followings.map((item) => item._id);
