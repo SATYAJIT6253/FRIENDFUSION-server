@@ -1,6 +1,7 @@
 const { sucess, error } = require('../utils/responseWraper');
 const Post = require('../models/Post');
 const User = require("../models/User");
+const { mapPostOtput } = require('../utils/mapPost');
 const cloudinary = require("cloudinary").v2;
 exports.getAllPostcontroller = async(req, res) => {
 
@@ -43,7 +44,7 @@ exports.likeunlikeController = async (req, res) => {
       const { postId } = req.body;
       const currentuserid = req._id;
 
-      const post = await Post.findById(postId);
+      const post = await Post.findById(postId).populate('owner');
       if (!post) {
          return res.send(error(404, "post not found"));
 
@@ -55,7 +56,7 @@ exports.likeunlikeController = async (req, res) => {
          post.likes.push(currentuserid);
       }
       await post.save();
-      return res.send(sucess(200,{post}));
+      return res.send(sucess(200,{post : mapPostOtput(post,req._id)}));
    } catch (e) {
       return res.send(error(500, e.message));
    }
