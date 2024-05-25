@@ -29,7 +29,7 @@ exports.followUnfollowcontroler = async(req,res)=>
             await usertofollow.save();
             await currentuser.save();
 
-            return res.send(sucess(200,"user unfollowed"));
+           
         }else{
             currentuser.followings.push(useridtofollow);
             usertofollow.followers.push(currentuserid);
@@ -37,9 +37,10 @@ exports.followUnfollowcontroler = async(req,res)=>
             await usertofollow.save();
             await currentuser.save();
 
-            return res.send(sucess(200,"user followed"));
+           
 
         }
+        return res.send(sucess(200,{user : usertofollow}));
     } catch (e) {
         console.log(e);
         return res.send(error(500,e.message));
