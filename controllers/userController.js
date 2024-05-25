@@ -26,20 +26,12 @@ exports.followUnfollowcontroler = async(req,res)=>
             const followerindex = usertofollow.followers.indexOf(currentuser);
             usertofollow.followers.splice(followerindex,1);
             
-            await usertofollow.save();
-            await currentuser.save();
-
-           
         }else{
             currentuser.followings.push(useridtofollow);
             usertofollow.followers.push(currentuserid);
-
-            await usertofollow.save();
-            await currentuser.save();
-
-           
-
         }
+        await usertofollow.save();
+        await currentuser.save();
         return res.send(sucess(200,{user : usertofollow}));
     } catch (e) {
         console.log(e);
