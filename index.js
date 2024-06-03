@@ -27,7 +27,7 @@ app.use(morgan("common"));
 app.use(cookieparser());
 app.use(cors({
     credentials:true,
-    origin:process.env.CILENT_ORIGIN,
+    origin:'http://localhost:3000'
     
 
 }))
