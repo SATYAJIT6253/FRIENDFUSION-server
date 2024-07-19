@@ -21,17 +21,14 @@ cloudinary.config({
 const authRouter = require("./routers/authRouter");
 const postRouter = require("./routers/postRouter");
 const userRouter = require("./routers/userRouter");
-let originlink = "http://localhost:3000";
-if(process.env.NODE_ENV === 'production') {
-    originlink = process.env.CLIENT_ORIGIN;
-}
+
 // use of middleeares
 app.use(express.json({limit:"900mb"}));
 app.use(morgan("common"));
 app.use(cookieparser());
 app.use(cors({
     credentials:true,
-    originlink,
+    origin: 'http://localhost:3000',
     
 
 }))
