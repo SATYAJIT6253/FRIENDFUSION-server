@@ -31,7 +31,7 @@ app.use(morgan("common"));
 app.use(cookieparser());
 app.use(cors({
     credentials:true,
-    origin:originlink,
+    originlink,
     
 
 }))
