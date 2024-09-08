@@ -28,7 +28,7 @@ app.use(morgan("common"));
 app.use(cookieparser());
 app.use(cors({
     credentials:true,
-    origin: 'http://localhost:3000',
+    origin: 'https://frienfusion-cilent.onrender.com',
     
 
 }))
